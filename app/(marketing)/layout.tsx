@@ -1,3 +1,6 @@
+import { NavbarComponent } from "./_components/Navbar";
+import { FooterComponent } from "./_components/footer";
+
 export default function MarketplaceLayout({
   children,
 }: {
@@ -6,10 +9,12 @@ export default function MarketplaceLayout({
   return (
     <div className="h-full bg-slate-100">
       {/* Navbar */}
-      <main className="pt-40 pb-20 bg-slate-100">
+      <NavbarComponent />
+      <main className="md:pt-40 pt-32 pb-20 bg-slate-100">
         {children}
         {/* Footer */}
       </main>
+      <FooterComponent />
     </div>
   );
 }

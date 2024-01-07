@@ -26,9 +26,9 @@ export default function MarketingPage() {
       >
         <div className="flex uppercase mb-4 border-amber-100 font-bold shadow-sm border px-4 py-4 rounded-full bg-amber-100 text-amber-700">
           <Medal className="h-6 w-6 mr-3" />
-          No 1 Task management
+          No.1 Task management
         </div>
-        <div className="text-5xl font-extrabold mb-5">
+        <div className="md:text-5xl text-4xl font-extrabold mb-5 text-center">
           Taskify helps teams move
         </div>
         <div className="rounded-sm px-3 py-2 text-4xl font-bold text-slate-100 mb-4 pb-4 bg-gradient-to-tr from-fuchsia-600 to-pink-600">
