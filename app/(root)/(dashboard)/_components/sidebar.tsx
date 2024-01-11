@@ -7,6 +7,7 @@ import Link from "next/link";
 import { Accordion } from "@/components/ui/accordion";
 import { NavitemComponent } from "./nav-item";
 import { useLocalStorage } from "usehooks-ts";
+import { Skeleton } from "@/components/ui/skeleton";
 
 interface SideBarComponent {
   storageKey?: string;
@@ -62,22 +63,49 @@ export const SideBarComponent = ({
     },
   });
 
+  if (
+    !isActiveOrgLoaded ||
+    !userJoinedOrganizationsLoaded ||
+    userJoinedOrganizations.isLoading
+  ) {
+    return (
+      <div className="flex flex-col">
+        {/* Workspaces and + btn */}
+        <div className="flex items-center">
+          <Skeleton className="pl-2 opacity-15">Workspaces</Skeleton>
+          <Skeleton className="ml-auto h-10 w-10"></Skeleton>
+        </div>
+        {/* Accordion */}
+
+        <div className="pt-10 md:pt-8">
+          <NavitemComponent.Skeleton></NavitemComponent.Skeleton>
+          <NavitemComponent.Skeleton></NavitemComponent.Skeleton>
+          <NavitemComponent.Skeleton></NavitemComponent.Skeleton>
+          <NavitemComponent.Skeleton></NavitemComponent.Skeleton>
+          <NavitemComponent.Skeleton></NavitemComponent.Skeleton>
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div className="flex flex-col">
       {/* Workspaces and + btn */}
       <div className="flex items-center font-semibold">
-        <div className="pl-2">Workspaces</div>
-        <Button
-          asChild
-          type="button"
-          size={"icon"}
-          variant={"ghost"}
-          className="ml-auto"
-        >
-          <Link href={"/select-org"} className="ml-auto">
-            <Plus height={20} width={20} />
-          </Link>
-        </Button>
+        <div className="flex items-center w-full font-semibold">
+          <div className="pl-2">Workspaces</div>
+          <Button
+            asChild
+            type="button"
+            size={"icon"}
+            variant={"ghost"}
+            className="ml-auto"
+          >
+            <Link href={"/select-org"} className="ml-auto">
+              <Plus height={20} width={20} />
+            </Link>
+          </Button>
+        </div>
       </div>
       {/* Accordion */}
 

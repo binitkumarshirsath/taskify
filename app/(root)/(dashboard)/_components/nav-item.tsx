@@ -6,6 +6,7 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 import { Button } from "@/components/ui/button";
+import { Skeleton } from "@/components/ui/skeleton";
 import { cn } from "@/lib/utils";
 import { Activity, CreditCard, Layout, Settings } from "lucide-react";
 import Image from "next/image";
@@ -95,5 +96,26 @@ export const NavitemComponent = ({
         ))}
       </AccordionContent>
     </AccordionItem>
+  );
+};
+
+NavitemComponent.Skeleton = function SkeletonNavItem() {
+  return (
+    <Skeleton className="border-none">
+      <Skeleton
+        className={cn(
+          "flex items-center gap-x-2 p-2 mb-2 text-neutral-700 rounded-md hover:bg-neutral-500/10 transition text-start no-underline hover:no-underline"
+        )}
+      >
+        <div className="flex items-center gap-x-2">
+          <div className="w-7 h-7 relative">
+            <Skeleton className="rounded-sm object-cover" />
+          </div>
+          <Skeleton className="font-medium text-sm opacity-30">
+            Organization
+          </Skeleton>
+        </div>
+      </Skeleton>
+    </Skeleton>
   );
 };
