@@ -61,7 +61,7 @@ export const NavitemComponent = ({
       <AccordionTrigger
         onClick={() => expandToggle(organization.id)}
         className={cn(
-          "flex items-center gap-x-2 p-1.5 text-neutral-700 rounded-md hover:bg-neutral-500/10 transition text-start no-underline hover:no-underline",
+          "flex items-center gap-x-2 p-2 mb-2 text-neutral-700 rounded-md hover:bg-neutral-500/10 transition text-start no-underline hover:no-underline",
           isActive && !isExpanded && "bg-sky-500/10 text-sky-700"
         )}
       >

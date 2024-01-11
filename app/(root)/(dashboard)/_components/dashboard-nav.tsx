@@ -2,10 +2,12 @@ import { LogoComponent } from "@/components/logo";
 import { Button } from "@/components/ui/button";
 import { OrganizationSwitcher, UserButton } from "@clerk/nextjs";
 import { Plus } from "lucide-react";
+import { MobileSideBarComponent } from "./mobile-sidebar";
 
 export const DashBoardNavbarComponent = () => {
   return (
-    <nav className=" w-full px-4 z-[100] items-center flex top-0 h-14 border-b fixed shadow-md">
+    <nav className=" w-full px-4 z-[100] items-center flex top-0 h-14 border-b  shadow-md">
+      <MobileSideBarComponent />
       <div className="flex items-center gap-x-4">
         <div className="hidden md:block">
           <LogoComponent />

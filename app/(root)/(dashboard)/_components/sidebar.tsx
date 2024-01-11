@@ -16,7 +16,7 @@ export const SideBarComponent = ({
   storageKey = "t-sidebar-state",
 }: SideBarComponent) => {
   // store which are accordions are open
-  const [expanded, setExpanded] = useLocalStorage<Record<string, any>>(
+  const [expanded, setExpanded] = useLocalStorage<Record<string, boolean>>(
     storageKey,
     {}
   );
@@ -66,7 +66,7 @@ export const SideBarComponent = ({
     <div className="flex flex-col">
       {/* Workspaces and + btn */}
       <div className="flex items-center font-semibold">
-        <div>Workspaces</div>
+        <div className="pl-2">Workspaces</div>
         <Button
           asChild
           type="button"

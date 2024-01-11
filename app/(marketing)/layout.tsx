@@ -1,5 +1,5 @@
-import { NavbarComponent } from "./_components/Navbar";
 import { FooterComponent } from "./_components/footer";
+import { NavbarComponent } from "./_components/navbar";
 
 export default function MarketplaceLayout({
   children,
