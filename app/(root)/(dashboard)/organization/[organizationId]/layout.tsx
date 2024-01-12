@@ -6,7 +6,7 @@ export default function OrganizationIdLayout({
   children: React.ReactNode;
 }) {
   return (
-    <div>
+    <div className="w-full h-full">
       <OrganizationControlComponent />
       {children}
     </div>
