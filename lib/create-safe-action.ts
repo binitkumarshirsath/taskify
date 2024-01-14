@@ -1,21 +1,37 @@
 import { z } from "zod";
 
-export type FieldError<T> = {
+/*
+You would use this type when you need to represent and manage validation errors for each field in an object of a given type, such as in form validation in a TypeScript project.
+
+interface User {
+  username: string;
+  email: string;
+  password: string;
+}
+
+const errors: FieldErrors<User> = {
+  username: ['Username is required', 'Username must be unique'],
+  email: ['Invalid email format'],
+  // password is omitted, meaning no errors for the password field
+};
+
+*/
+export type FieldErrors<T> = {
   [K in keyof T]?: string[];
 };
 
 /*
+ActionState is a type that allows you to represent the possible outcomes of an action, including successful data, error messages, and field-specific validation errors. It's a way of structuring the result of actions in a consistent manner.
 
 */
 export type ActionState<TInput, TOutput> = {
-  data?: TOutput | null;
+  fieldErrors?: FieldErrors<TInput>;
   error?: string | null;
-  fieldError?: FieldError<TInput>;
+  data?: TOutput;
 };
 
 /*
-    Returns a function that will validate the passed data.
-    Its a HOC
+   The createSafeAction function is a Higher Order Function (HOF) that takes a Zod schema (z.Schema<TInput>) for validation and a handler function for processing the validated data. It returns a new function that performs validation using the Zod schema and then delegates to the provided handler function. The returned function produces an ActionState<TInput, TOutput>.
 */
 
 export const createSafeAction = <TInput, TOutput>(
@@ -26,10 +42,11 @@ export const createSafeAction = <TInput, TOutput>(
     const validationResult = schema.safeParse(data);
     if (!validationResult.success) {
       return {
-        fieldError: validationResult.error.flatten() as FieldError<TInput>,
+        fieldErrors: validationResult.error.flatten()
+          .fieldErrors as FieldErrors<TInput>,
       };
     }
 
-    return handler(data);
+    return handler(validationResult.data);
   };
 };
